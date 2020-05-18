@@ -1,0 +1,43 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: spring-boot-database
+  profiles:
+    active: dev
+---
+spring:
+  profiles: local | dev
+datasource:
+  config:
+    url: jdbc:mysql://localhost:3306/database_name
+    initialize: true
+    username: dbusername
+    password: dbuserpwd
+    driverClassName: com.mysql.cj.jdbc.Driver
+    maxIdle: 10
+    minIdle: 0
+    maxActive: 10
+    maxWait: 2000
+    initialSize: 2
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    minEvictableIdleTimeMillis: 900000
+---
+spring:
+  profiles: prod
+datasource:
+  config:
+    url: jdbc:mysql://localhost:3306/database_name
+    initialize: true
+    username: dbusername
+    password: dbuserpwd
+    driver-class-name: com.mysql.jdbc.Driver
+    maxIdle: 10
+    minIdle: 0
+    maxActive: 10
+    maxWait: 2000
+    initialSize: 2
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    minEvictableIdleTimeMillis: 900000
